@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barry's Pizza</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-image: url('images/home.jpg'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            color: #ffffff; /* White text color */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #f39c12;
+        }
+
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-primary:hover,
+        .btn-secondary:hover {
+            background-color: #e67e22;
+        }
+
+        #hero {
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        #hero h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        #hero p {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #f39c12;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        #contact {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        #contact h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .contact-details p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+
+        .contact-details p strong {
+            color: #f39c12;
+        }
+
+        .copyright {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888888;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <img src="images/logo.jpeg" alt="Barry's Pizza Logo" class="logo">
+                <span class="logo-text">Barry's Pizza</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="btn-secondary">Home</a></li>
+                    <li><a href="order.html" class="btn-primary">Order Now</a></li>
+                    <li><a href="#contact" class="btn-secondary">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <h1>Welcome to Barry's Pizza</h1>
+            <p>How can we help you?</p>
+            <a href="order.html" class="btn btn-primary">Order Now</a>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-details">
+                <p><strong>Address:</strong> 123 Pizza Street, New York, NY 10001</p>
+                <p><strong>Phone:</strong> (123) 456-7890</p>
+                <p><strong>Email:</strong> info@barryspizza.com</p>
+            </div>
+            <p class="copyright">&copy; 2024 Barry's Pizza. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

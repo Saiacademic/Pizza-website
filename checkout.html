@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barry's Pizza | Checkout</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-image: url('images/home.jpg'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            color: #ffffff; /* White text color */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #f39c12;
+        }
+
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-primary:hover,
+        .btn-secondary:hover {
+            background-color: #e67e22;
+        }
+
+        #checkout {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        #checkout h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        #cart,
+        #payment,
+        #receipt-delivery {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        #cart h3,
+        #payment h3,
+        #receipt-delivery h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        #cart ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #cart ul li {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        #order-form label {
+            font-size: 18px;
+            display: inline-block;
+            width: 180px;
+            text-align: left;
+            margin-right: 20px;
+        }
+
+        #order-form input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        #order-form button {
+            background-color: #f39c12;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #order-form button:hover {
+            background-color: #e67e22;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        footer p {
+            margin: 0;
+            color: #ffffff;
+        }
+
+        .form-group {
+            display: none;
+            margin-bottom: 10px;
+        }
+
+        .form-group.show {
+            display: block;
+        }
+
+        .form-group label,
+        .form-group input,
+        .form-group select {
+            display: block;
+            width: calc(100% - 22px); /* Adjusted width to account for padding */
+            margin-top: 5px;
+            margin-bottom: 5px;
+            background-color: #444;
+            padding: 10px;
+            border-radius: 5px;
+            color: #fff;
+            border: none;
+            outline: none;
+            box-sizing: border-box; /* Ensures padding doesn't increase the width */
+        }
+
+        .form-group input[type="email"],
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group input[type="password"],
+        .form-group select,
+        .form-group textarea {
+            background-color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <img src="images/logo.jpeg" alt="Barry's Pizza Logo" class="logo">
+                <span class="logo-text">Barry's Pizza</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="btn-secondary">Home</a></li>
+                    <li><a href="order.html" class="btn-primary">Order Now</a></li>
+                    <li><a href="#contact" class="btn-secondary">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="checkout">
+        <div class="container">
+            <h2>Checkout</h2>
+            <div id="cart">
+                <h3>Your Cart</h3>
+                <ul id="cart-items"></ul>
+            </div>
+            <!-- Payment and Receipt Delivery Form -->
+            <form id="order-form" action="process_order.php" method="POST">
+                <!-- Payment Method Section -->
+                <label for="payment-method-credit-card">
+                    <input type="radio" id="credit-card" name="payment-method" value="credit-card">
+                    Credit Card
+                </label>
+                <label for="payment-method-debit-card">
+                    <input type="radio" id="debit-card" name="payment-method" value="debit-card">
+                    Debit Card
+                </label>
+                <label for="payment-method-cash">
+                    <input type="radio" id="cash" name="payment-method" value="cash">
+                    Cash
+                </label>
+                <br><br>
+
+                <!-- Credit Card Details Section -->
+                <div id="credit-card-details" class="form-group">
+                    <label for="card-holder-name">Card Holder Name:</label>
+                    <input type="text" id="card-holder-name" name="card-holder-name">
+                    <label for="card-number">Card Number:</label>
+                    <input type="text" id="card-number" name="card-number">
+                    <label for="expiry-month">Expiry Date:</label>
+                    <select id="expiry-month" name="expiry-month">
+                        <option value="01">01 - January</option>
+                        <option value="02">02 - February</option>
+                        <option value="03">03 - March</option>
+                        <option value="04">04 - April</option>
+                        <option value="05">05 - May</option>
+                        <option value="06">06 - June</option>
+                        <option value="07">07 - July</option>
+                        <option value="08">08 - August</option>
+                        <option value="09">09 - September</option>
+                        <option value="10">10 - October</option>
+                        <option value="11">11 - November</option>
+                        <option value="12">12 - December</option>
+                    </select>
+                    <select id="expiry-year" name="expiry-year">
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                        <option value="2030">2030</option>
+                    </select>
+                    <label for="cvv">CVV:</label>
+                    <input type="text" id="cvv" name="cvv">
+                </div>
+
+
+                <!-- Receipt Delivery Section -->
+                <div id="receipt-delivery" class="form-group">
+                    <h3>Receipt Delivery</h3>
+                    <label for="email-receipt">
+                        <input type="radio" id="email" name="receipt-delivery" value="email">
+                        Email
+                    </label>
+                    <label for="delivery-receipt">
+                        <input type="radio" id="delivery" name="receipt-delivery" value="delivery">
+                        Delivery
+                    </label>
+                    <br><br>
+
+                    <div id="email-delivery-details" class="form-group">
+                        <label for="email-address">Email Address:</label>
+                        <input type="email" id="email-address" name="email-address">
+                    </div>
+
+                    <div id="delivery-address-details" class="form-group" style="display: none;">
+                        <label for="delivery-address">Delivery Address:</label>
+                        <textarea id="delivery-address" name="delivery-address" rows="4"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Barry's Pizza. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Retrieve cart items from localStorage and display in the cart section
+        document.addEventListener("DOMContentLoaded", function () {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || {};
+            const cartItemsContainer = document.getElementById('cart-items');
+
+            // Iterate through cart items and display them
+            Object.keys(cartItems).forEach(itemName => {
+                const item = cartItems[itemName];
+                const li = document.createElement('li');
+                li.textContent = `${itemName} - ${item.quantity}`;
+                cartItemsContainer.appendChild(li);
+            });
+
+            // Function to update cart items display
+            function updateCartItemsDisplay() {
+                cartItemsContainer.innerHTML = ''; // Clear previous items
+                Object.keys(cartItems).forEach(itemName => {
+                    const item = cartItems[itemName];
+                    const li = document.createElement('li');
+                    li.textContent = `${itemName} - ${item.quantity}`;
+                    cartItemsContainer.appendChild(li);
+                });
+            }
+            function toggleReceiptDelivery() {
+            // Display the receipt delivery section
+            document.getElementById('receipt-delivery').style.display = 'block';
+        }
+
+            // Toggle credit card details section based on selected payment method
+            const creditCardDetails = document.getElementById('credit-card-details');
+            const paymentMethodInputs = document.querySelectorAll('input[name="payment-method"]');
+            paymentMethodInputs.forEach(input => {
+                input.addEventListener('change', function () {
+                    if (this.value === 'credit-card') {
+                        creditCardDetails.classList.add('show');
+                    } else {
+                        creditCardDetails.classList.remove('show');
+                    }
+                });
+            });
+
+            // Toggle email and delivery address sections based on selected receipt delivery method
+            const emailDeliveryDetails = document.getElementById('email-delivery-details');
+            const deliveryAddressDetails = document.getElementById('delivery-address-details');
+            const receiptDeliveryInputs = document.querySelectorAll('input[name="receipt-delivery"]');
+            receiptDeliveryInputs.forEach(input => {
+                input.addEventListener('change', function () {
+                    if (this.value === 'email') {
+                        emailDeliveryDetails.classList.add('show');
+                        deliveryAddressDetails.classList.remove('show');
+                    } else if (this.value === 'delivery') {
+                        deliveryAddressDetails.classList.add('show');
+                        emailDeliveryDetails.classList.remove('show');
+                    }
+                });
+            });
+
+            // Function to handle the "Next" button click
+            function togglePaymentDetails() {
+                const paymentSection = document.getElementById('payment');
+                const receiptDeliverySection = document.getElementById('receipt-delivery');
+
+                // Hide payment details and show receipt delivery details
+                paymentSection.style.display = 'none';
+                receiptDeliverySection.classList.add('show');
+            }
+
+            // Function to place the order
+            function placeOrder() {
+                // Here you can implement the logic to place the order
+                // For example, sending data to a server or performing any necessary actions
+                alert('Order placed successflly!');
+            }
+            function toggleDeliveryDetails() {
+            var email = document.getElementById('email');
+            var delivery = document.getElementById('delivery');
+            var deliveryAddress = document.getElementById('delivery-address-details');
+
+            email.addEventListener('change', function() {
+                if (email.checked) {
+                    document.getElementById('email-delivery-details').style.display = 'block';
+                    deliveryAddress.style.display = 'none';
+                }
+            });
+
+            delivery.addEventListener('change', function() {
+                if (delivery.checked) {
+                    document.getElementById('email-delivery-details').style.display = 'none';
+                    deliveryAddress.style.display = 'block';
+                }
+            });
+        }
+
+        // Call the function on page load
+        toggleDeliveryDetails();
+        });
+    </script>
+
+</body>
+
+</html>
+

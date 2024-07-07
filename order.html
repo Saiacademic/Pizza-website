@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barry's Pizza | Order Now</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-image: url('images/home.jpg'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            color: #ffffff; /* White text color */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #f39c12;
+        }
+
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-primary:hover,
+        .btn-secondary:hover {
+            background-color: #e67e22;
+        }
+
+        #menu {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        #menu h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .menu-item {
+            margin-bottom: 40px;
+        }
+
+        .menu-item h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .menu-item ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .menu-item ul li {
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        .menu-item ul li img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+        }
+
+        .menu-item ul li div {
+            margin-top: 10px;
+        }
+
+        .add-btn,
+        .quantity-btn {
+            background-color: #f39c12;
+            color: #ffffff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .add-btn:hover,
+        .quantity-btn:hover {
+            background-color: #e67e22;
+        }
+
+        .quantity-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-container span {
+            margin: 0 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #f39c12;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        #contact {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        #contact h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .contact-details p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+
+        .contact-details p strong {
+            color: #f39c12;
+        }
+
+        .copyright {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888888;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <img src="images/logo.jpeg" alt="Barry's Pizza Logo" class="logo">
+                <span class="logo-text">Barry's Pizza</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="btn-secondary">Home</a></li>
+                    <li><a href="order.html" class="btn-primary">Order Now</a></li>
+                    <li><a href="#contact" class="btn-secondary">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="menu">
+        <div class="container">
+            <h2>Menu</h2>
+            <div class="menu-item">
+                <h3>Pizza</h3>
+                <ul id="pizza-menu">
+                    <li data-name="Pepperoni Pizza" data-price="12">
+                        <img src="images/pep.jpeg" alt="Pepperoni Pizza">
+                        <div>
+                            <span>Pepperoni Pizza - $12</span>
+                            <div class="quantity-container">
+                                <button class="quantity-btn" onclick="decrementQuantity(this)">-</button>
+                                <span class="quantity">0</span>
+                                <button class="quantity-btn" onclick="incrementQuantity(this)">+</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li data-name="Cheese Pizza" data-price="10">
+                        <img src="images/cheese.jpeg" alt="Cheese Pizza">
+                        <div>
+                            <span>Cheese Pizza - $10</span>
+                            <div class="quantity-container">
+                                <button class="quantity-btn" onclick="decrementQuantity(this)">-</button>
+                                <span class="quantity">0</span>
+                                <button class="quantity-btn" onclick="incrementQuantity(this)">+</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li data-name="Veggie Pizza" data-price="11">
+                        <img src="images/veggie.jpg" alt="Veggie Pizza">
+                        <div>
+                            <span>Veggie Pizza - $11</span>
+                            <div class="quantity-container">
+                                <button class="quantity-btn" onclick="decrementQuantity(this)">-</button>
+                                <span class="quantity">0</span>
+                                <button class="quantity-btn" onclick="incrementQuantity(this)">+</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="menu-item">
+                <h3>Sides</h3>
+                <ul id="sides-menu">
+                    <li data-name="Garlic Bread" data-price="4">
+                        <img src="images/garlic.jpg" alt="Garlic Bread">
+                        <div>
+                            <span>Garlic Bread - $4</span>
+                            <div class="quantity-container">
+                                <button class="quantity-btn" onclick="decrementQuantity(this)">-</button>
+                                <span class="quantity">0</span>
+                                <button class="quantity-btn" onclick="incrementQuantity(this)">+</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li data-name="Chicken Wings" data-price="6">
+                        <img src="images/chicken.jpeg" alt="Chicken Wings">
+                        <div>
+                            <span>Chicken Wings - $6</span>
+                            <div class="quantity-container">
+                                <button class="quantity-btn" onclick="decrementQuantity(this)">-</button>
+                                <span class="quantity">0</span>
+                                <button class="quantity-btn" onclick="incrementQuantity(this)">+</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="menu-item">
+                <h3>Drinks</h3>
+                <ul id="drinks-menu">
+                    <li data-name="Soda" data-price="2">
+                        <img src="images/soda.jpg" alt="Soda">
+                        <div>
+                            <span>Soda - $2</span>
+                            <div class="quantity-container">
+                                <button class="quantity-btn" onclick="decrementQuantity(this)">-</button>
+                                <span class="quantity">0</span>
+                                <button class="quantity-btn" onclick="incrementQuantity(this)">+</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li data-name="Water" data-price="1">
+                        <img src="images/water.jpg" alt="Water">
+                        <div>
+                            <span>Water - $1</span>
+                            <div class="quantity-container">
+                                <button class="quantity-btn" onclick="decrementQuantity(this)">-</button>
+                                <span class="quantity">0</span>
+                                <button class="quantity-btn" onclick="incrementQuantity(this)">+</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <a href="checkout.html" id="checkout-btn" class="btn hidden">Go to Checkout</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Barry's Pizza. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+    const cart = {};
+
+    function incrementQuantity(button) {
+        const quantityElement = button.previousElementSibling;
+        let quantity = parseInt(quantityElement.textContent);
+        quantityElement.textContent = ++quantity;
+
+        const itemElement = button.closest('li');
+        const itemName = itemElement.getAttribute('data-name');
+        const itemPrice = itemElement.getAttribute('data-price');
+
+        if (!cart[itemName]) {
+            cart[itemName] = { price: itemPrice, quantity: 0 };
+        }
+        cart[itemName].quantity = quantity;
+
+        updateCartInLocalStorage();
+        checkCheckoutVisibility();
+    }
+
+    function decrementQuantity(button) {
+        const quantityElement = button.nextElementSibling;
+        let quantity = parseInt(quantityElement.textContent);
+        if (quantity > 0) {
+            quantityElement.textContent = --quantity;
+
+            const itemElement = button.closest('li');
+            const itemName = itemElement.getAttribute('data-name');
+
+            if (cart[itemName]) {
+                cart[itemName].quantity = quantity;
+                if (quantity === 0) {
+                    delete cart[itemName];
+                }
+            }
+
+            updateCartInLocalStorage();
+            checkCheckoutVisibility();
+        }
+    }
+
+    function updateCartInLocalStorage() {
+        localStorage.setItem('cartItems', JSON.stringify(cart));
+    }
+
+    function checkCheckoutVisibility() {
+        const checkoutButton = document.getElementById('checkout-btn');
+        const quantities = document.querySelectorAll('.quantity');
+        let totalQuantity = 0;
+        quantities.forEach(quantity => {
+            totalQuantity += parseInt(quantity.textContent);
+        });
+        if (totalQuantity > 0) {
+            checkoutButton.classList.remove('hidden');
+        } else {
+            checkoutButton.classList.add('hidden');
+        }
+    }
+
+    // On page load, load the cart items from localStorage
+    document.addEventListener("DOMContentLoaded", function () {
+        const savedCart = JSON.parse(localStorage.getItem('cartItems')) || {};
+        Object.keys(savedCart).forEach(itemName => {
+            const item = savedCart[itemName];
+            const itemElement = document.querySelector(`li[data-name="${itemName}"]`);
+            if (itemElement) {
+                const quantityElement = itemElement.querySelector('.quantity');
+                quantityElement.textContent = item.quantity;
+            }
+            cart[itemName] = item;
+        });
+        checkCheckoutVisibility();
+    });
+</script>
+
+</body>
+
+</html>
